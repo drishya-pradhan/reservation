@@ -1,0 +1,9 @@
+.container { 
+    background-color: whitesmoke;
+    margin: 200px;
+    box-shadow: 10px 15px 20px rgba(0, 0, 0, .1); 
+    display: gird;
+    grid-template-columns: 40% 60%;
+    width: 60%; 
+    outline:rgba(0, 0, 0, .1);
+}

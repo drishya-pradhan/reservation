@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="eng"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+        <link rel = "stylesheet" href = "reservestyle.css">
+
+        <title> Reserve </title>
+
+
+
+    </head>
+    <body> 
+        <div class = "container" >
+            <div class = "row">
+            <div class = "col-md-6">
+                    <div class = "container-time">
+                        <h1 class = "heading"><b>Time Open</b> </h1> 
+                        <h2 class = "heading-days">Monday</h2>
+                        <p>Closed</p>
+                        <p>Reserve Online a day ahead</p>
+                        <h2 class = "heading-days">Tuesday-Friday</h2>
+                        <p>11 am - 2:30pm (Lunch)</p>
+                        <p> 5pm - 10pm (Dinner)</p>
+                        <h2 class = "heading-days">Saturday-Sunday</h2>
+                        <p>12pm - 3:00pm (Lunch)</p>
+                        <p> 5pm - 10pm (Dinner)</p>
+                        <hr> 
+                        <h4> Reserve Here Or </h4>
+                        <h4 class = "heading-num"> Call us: <a href="tel:2168578057" onclick="ga('send', 'event', { eventCategory: 'Contact', eventAction: 'Call', eventLabel: 'Mobile Button'});"><p class="call-button">216-857-8057</p></a></h4>
+                    </div>
+            
+            </div>
+        <div class ="col-md-6">
+        <div class = "container-form">      
+        <form method="POST" target = "_blank" id = "form"> 
+            <h2 class = "heading heading-yellow" > Reserve Online </h2>
+            <div class = "form-field"> 
+                <label for="name">Name: </label><br> 
+                <input id="name" name="name" type="text" required> 
+            </div>
+            <div class = "form-field"> 
+                <label for="email"> Email: </label> <br>
+                <input id="email" name="email" type="email" required>   
+            </div>
+            <div class = "form-field"> 
+                <label for="time"> Time: </label> <br>
+                <select id="time" name="time"  type="time" required>   
+                    <p right >  <option value="" selected> Choose a Time</option></p>
+                    <p><option value= "11:00 am">11:00 am</option></p>
+                        <p><option value= "11:30">11:30 am</option></p>
+                        <p><option value= "12:00 pm">12:00 pm</option></p>
+                        <p><option value= "12:30 pm">12:30 pm</option></p>
+                        <p><option value= "1:00 pm">1:00 pm</option></p>
+                        <p><option value= "1:30 pm">1:30 pm</option></p>
+                        <p><option value= "2:00 pm">2:00 pm</option></p>
+                        <p><option value= "5:00 pm">5:00 pm</option></p>
+                        <p><option value= "5:30 pm">5:30 pm</option></p>
+                        <p><option value= "6:00 pm">6:00 pm</option></p>
+                        <p><option value= "6:30 pm">6:30 pm</option></p>
+                        <p><option value= "7:00 pm">7:00 pm</option></p>
+                        <p><option value= "7:30 pm">7:30 pm</option></p>
+                        <p><option value= "8:00 pm">8:00 pm</option></p>
+                        <p><option value= "8:30 pm">8:30 pm</option></p>
+                        <p><option value= "9:00 pm">9:00 pm</option></p>
+                        <p><option value= "9:30 pm">9:30 pm</option></p>
+                 </select></p>
+
+            </div>
+            <div class = "form-field"> 
+                <label for="date"> Date: </label> <br>
+                <input id="date" name="date" type="date" required="Required" name="date">   
+            </div>
+            <div class = "form-field"> 
+                <label for="ppl"> How many people: </label> <br>
+                <input id="ppl" name="ppl" type="number" required>   
+            </div>
+            <div class = "form-field"> 
+                <label for="note"> Other things to note: </label> <br>
+                <input id="note" name="note" type="text">   
+            </div>
+
+            <div> 
+                <button type="submit" class = "btn"> Submit</button>
+            </div>
+        </form>
+
+        <script>
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('form').addEventListener('submit', function(event){
+                event.preventDefault(); 
+                const name = document.getElementById('name').value; 
+                const reserveInfo = { 
+                    name: name, 
+                }
+
+
+            });
+            document.getElementsByName("date")[0].setAttribute('min', today); 
+
+            const form = document.getElementById('form'); 
+            const name = document.getElementById('name'); 
+            const email = document. getElementById('email');
+            const time = document. getElementById('time');
+            const date = document. getElementById('date');
+            const ppl = document. getElementById('ppl');
+            const note= document.getElementById("note");
+
+            form.addEventListener('submit', function(e){
+                e.preventDefault(); 
+
+                const nameVal = name.value; 
+                const emailVal = email.value; 
+                const timeVal = time.value; 
+                const dateVal = date.value; 
+                const pplVal = ppl.value; 
+                const noteVal = note.value; 
+                
+                localStorage.setItem('names', nameVal); 
+                localStorage.setItem('emails', emailVal);
+                localStorage.setItem('times', timeVal);
+                localStorage.setItem('dates', dateVal);
+                localStorage.setItem('ppls', pplVal);
+                localStorage.setItem('notes', noteVal);
+                
+                window.location.href = "reserved.html";
+               
+            })
+        </script>
+        <!-- <?php
+        if(isset($_POST['submit'])){
+        
+        
+        
+            $name = $_POST['name'];
+            $email= $_POST['email'];
+            $subject= $_POST['time'];
+            $ppl= $_POST['ppl'];
+            $note= $_POST['note'];
+            $to = drishyapradhan2003@gmail.com;
+            $headers = 'From: '.$email . "\r\n";
+
+            $body = "name : ".$name. "\r\n" .
+                    "time : ".$time. "\r\n" .
+                    "Message : " . $note;
+            if(mail($to, $name, $time , $headers)){
+                echo "Mail Sent!";
+            }else{
+                 echo "Failed To Send Mail";
+            }
+        }
+        
+        ?> -->
+        <!DOCTYPE html>
+        <html lang="eng"> 
+            <head> 
+                <meta charset="UTF-8"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+                <link rel = "stylesheet" href = "reservestyle.css">
+        
+                <title> Reserve </title>
+        
+        
+        
+            </head>
+            <body> 
